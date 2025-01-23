@@ -4,10 +4,13 @@ export async function uploadImage(file: File): Promise<string | null> {
   formData.append('file', file);
 
   try {
-    const response = await fetch(`http://localhost:3001/uploadImage`, {
-      method: 'POST',
-      body: formData,
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/uploadImage`,
+      {
+        method: 'POST',
+        body: formData,
+      }
+    );
 
     const data = await response.json();
     return data.base64 || null;
