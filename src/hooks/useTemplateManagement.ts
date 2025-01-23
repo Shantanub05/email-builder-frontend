@@ -20,7 +20,7 @@ export function useTemplateManagement() {
   async function fetchTemplates() {
     try {
       const response = await fetch(
-        '${process.env.NEXT_PUBLIC_API_BASE_URL}/template/getEmailTemplates'
+        `${process.env.NEXT_PUBLIC_API_URL}/template/getEmailTemplates`
       );
       if (!response.ok) {
         throw new Error('Failed to fetch templates');
@@ -38,7 +38,7 @@ export function useTemplateManagement() {
   ) {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/template/getEmailTemplate/${templateId}`
+        `${process.env.NEXT_PUBLIC_API_URL}/template/getEmailTemplate/${templateId}`
       );
       if (!response.ok) {
         throw new Error('Failed to fetch template');
@@ -84,7 +84,7 @@ export function useTemplateManagement() {
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/template/uploadEmailTemplate`,
+        `${process.env.NEXT_PUBLIC_API_URL}/template/uploadEmailTemplate`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

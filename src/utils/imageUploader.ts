@@ -5,7 +5,7 @@ export async function uploadImage(file: File): Promise<string | null> {
 
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/uploadImage`,
+      `${process.env.NEXT_PUBLIC_API_URL}/uploadImage`,
       {
         method: 'POST',
         body: formData,
