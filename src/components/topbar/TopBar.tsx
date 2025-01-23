@@ -10,7 +10,7 @@ interface TopBarProps {
     onAddImage?: () => void;
     onSaveTemplate?: () => void;
     onResetTemplate?: () => void;
-    onDownloadTemplate?: () => void; // ✅ Now only downloads HTML
+    onDownloadTemplate?: () => void;
 }
 
 const TopBar: React.FC<TopBarProps> = ({
@@ -61,7 +61,6 @@ const TopBar: React.FC<TopBarProps> = ({
                     </Button>
                 )}
 
-                {/* ✅ Single Download Button */}
                 {onDownloadTemplate && (
                     <Button
                         onClick={onDownloadTemplate}

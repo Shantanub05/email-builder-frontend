@@ -21,7 +21,6 @@ export default function CustomSidebar({ onLoadTemplate, templates }: CustomSideb
 
     useEffect(() => {
         if (templates.length > 0 && !selectedTemplateId) {
-            // Automatically select the first template if none is selected
             setSelectedTemplateId(templates[0]._id);
             onLoadTemplate(templates[0]._id);
         }

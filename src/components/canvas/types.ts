@@ -12,5 +12,5 @@ export interface CanvasElement {
     color?: string;
     alignment?: 'left' | 'center' | 'right' | 'justify';
   };
-  file?: File; // ✅ Allow storing uploaded files
+  file?: File; 
 }

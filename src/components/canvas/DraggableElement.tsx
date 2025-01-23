@@ -8,7 +8,6 @@ interface DraggableElementProps {
 }
 
 const DraggableElement: React.FC<DraggableElementProps> = ({ children }) => {
-  // Here we assert that the ref will never be null when used.
   const nodeRef = useRef<HTMLDivElement>(null!);
 
   return (

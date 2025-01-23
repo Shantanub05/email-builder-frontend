@@ -16,7 +16,7 @@ const Canvas: React.FC<CanvasProps> = ({ elements, selectedElementId, onSelectEl
     return (
         <div className="space-y-2 p-4">
             {elements.map((el) => {
-                const isSelected = el.id === selectedElementId; // ✅ Check if selected
+                const isSelected = el.id === selectedElementId;
 
                 return (
                     <DraggableElement key={el.id}>
@@ -46,7 +46,7 @@ const Canvas: React.FC<CanvasProps> = ({ elements, selectedElementId, onSelectEl
                                         styles: { ...el.styles, width: newWidth, height: newHeight },
                                     });
                                 }}
-                                className={`relative ${isSelected ? "border-2 border-blue-500" : "border-transparent"}`} // ✅ Blue selection restored
+                                className={`relative ${isSelected ? "border-2 border-blue-500" : "border-transparent"}`} 
                             >
                                 <img
                                     src={el.url}
