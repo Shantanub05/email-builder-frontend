@@ -12,23 +12,48 @@ interface CanvasProps {
     onUpdateElement: (id: string, updates: Partial<CanvasElement>) => void;
 }
 
-const Canvas: React.FC<CanvasProps> = ({ elements, selectedElementId, onSelectElement, onUpdateElement }) => {
+const Canvas: React.FC<CanvasProps> = ({
+    elements,
+    selectedElementId,
+    onSelectElement,
+    onUpdateElement,
+}) => {
     return (
-        <div className="space-y-2 p-4">
+        <div className="relative h-full w-full space-y-2 p-4">
             {elements.map((el) => {
                 const isSelected = el.id === selectedElementId;
+                const position = {
+                    x: el.styles?.left || 0,
+                    y: el.styles?.top || 0,
+                };
 
                 return (
-                    <DraggableElement key={el.id}>
+                    <DraggableElement
+                        key={el.id}
+                        position={position}
+                        onPositionChange={(newPos) => {
+                            onUpdateElement(el.id, {
+                                styles: {
+                                    ...el.styles,
+                                    left: newPos.x,
+                                    top: newPos.y,
+                                },
+                            });
+                        }}
+                    >
                         {el.type === "text" ? (
                             <div
                                 style={{
+                                    position: 'absolute', // Add this
+                                    left: el.styles?.left ?? 0, // Add this
+                                    top: el.styles?.top ?? 0, // Add this
                                     fontSize: el.styles?.fontSize ?? "16px",
                                     color: el.styles?.color ?? "#000000",
                                     textAlign: el.styles?.alignment ?? "left",
                                     border: isSelected ? "2px solid #3B82F6" : "1px solid transparent",
                                     padding: "8px",
                                     cursor: "pointer",
+                                    width: 'fit-content' // Ensure text doesn't overflow
                                 }}
                                 onClick={() => onSelectElement(el.id)}
                                 dangerouslySetInnerHTML={{ __html: el.content ?? "" }}
@@ -46,7 +71,7 @@ const Canvas: React.FC<CanvasProps> = ({ elements, selectedElementId, onSelectEl
                                         styles: { ...el.styles, width: newWidth, height: newHeight },
                                     });
                                 }}
-                                className={`relative ${isSelected ? "border-2 border-blue-500" : "border-transparent"}`} 
+                                className={`relative ${isSelected ? "border-2 border-blue-500" : "border-transparent"}`}
                             >
                                 <img
                                     src={el.url}

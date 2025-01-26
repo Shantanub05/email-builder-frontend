@@ -10,7 +10,7 @@ import EditSelectedElement from "@/components/element-editor/EditSelectedElement
 import { Card } from "@/components/ui/card";
 import { CanvasElement } from "@/components/canvas/types";
 import { useTemplateManagement } from "@/hooks/useTemplateManagement";
-import { generateHTMLFromCanvas } from "@/utils/htmlParser";
+import { generateHTMLFromCanvas } from '@/utils/generateHTML'
 import { downloadTemplate } from "@/utils/downloadTemplate";
 
 interface LayoutContainerProps {
@@ -39,7 +39,13 @@ export default function LayoutContainer({ children }: LayoutContainerProps) {
                 id,
                 type: "text",
                 content: "<p>New Text</p>",
-                styles: { fontSize: "16px", color: "#000000" },
+                styles: {
+                    left: 0,  // Add required position
+                    top: 0,   // Add required position
+                    fontSize: "16px",
+                    color: "#000000",
+                    alignment: "left"  // Add default alignment
+                },
             },
         ]);
         setSelectedId(id);
@@ -49,7 +55,17 @@ export default function LayoutContainer({ children }: LayoutContainerProps) {
         const id = crypto.randomUUID();
         setCanvasElements((prev) => [
             ...prev,
-            { id, type: "image", url: "https://picsum.photos/200", styles: {} },
+            {
+                id,
+                type: "image",
+                url: "https://picsum.photos/200",
+                styles: {
+                    left: 0,     // Required
+                    top: 0,      // Required
+                    width: 200,  // Default width
+                    height: 150  // Default height
+                }
+            },
         ]);
         setSelectedId(id);
     };

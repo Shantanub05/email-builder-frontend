@@ -4,13 +4,13 @@ export interface CanvasElement {
   content?: string;
   url?: string;
   styles: {
-    left?: number;
-    top?: number;
+    left: number; // Changed to required
+    top: number; // Changed to required
     width?: number;
     height?: number;
     fontSize?: string;
     color?: string;
     alignment?: 'left' | 'center' | 'right' | 'justify';
   };
-  file?: File; 
+  file?: File;
 }

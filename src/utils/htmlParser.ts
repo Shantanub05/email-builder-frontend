@@ -1,4 +1,3 @@
-// src/utils/htmlParser.ts
 import { CanvasElement } from '@/components/canvas/types';
 
 export function parseHTMLToCanvas(html: string): CanvasElement[] {
@@ -40,34 +39,4 @@ export function parseHTMLToCanvas(html: string): CanvasElement[] {
   });
 
   return elements;
-}
-
-export function generateHTMLFromCanvas(
-  canvasElements: CanvasElement[]
-): string {
-  return canvasElements
-    .map((el) => {
-      if (el.type === 'text') {
-        return `<p style="position: absolute; 
-                          left: ${el.styles?.left ?? 0}px; 
-                          top: ${el.styles?.top ?? 0}px; 
-                          font-size: ${el.styles?.fontSize ?? '16px'}; 
-                          color: ${el.styles?.color ?? '#000000'}; 
-                          text-align: ${el.styles?.alignment ?? 'left'};">
-                    ${el.content || ''}
-                </p>`;
-      } else if (el.type === 'image') {
-        return `<img src="${el.url}" 
-                     alt="Canvas Image" 
-                     style="position: absolute; 
-                            left: ${el.styles?.left ?? 0}px; 
-                            top: ${el.styles?.top ?? 0}px; 
-                            width: ${el.styles?.width ?? 200}px; 
-                            height: ${el.styles?.height ?? 150}px; 
-                            max-width: 100%; 
-                            display: block;" />`;
-      }
-      return '';
-    })
-    .join('');
 }
